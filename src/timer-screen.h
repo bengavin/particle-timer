@@ -8,8 +8,10 @@
 #define _timer_screen_h
 
 #include <Adafruit_GFX.h>
+#include "timer-manager.h"
 
-typedef enum {
+typedef enum
+{
     BUTTON_1,
     BUTTON_2,
     BUTTON_3
@@ -17,9 +19,13 @@ typedef enum {
 
 class TimerScreen
 {
-    public:
-        virtual void render(Adafruit_GFX* output);
-        virtual void* button_pressed(SCREEN_BUTTON which);
+protected:
+    TimerManager *_manager;
+
+public:
+    TimerScreen(TimerManager *manager) : _manager(manager){};
+    virtual void render(Adafruit_GFX *output);
+    virtual void *button_pressed(SCREEN_BUTTON which);
 };
 
 #endif
